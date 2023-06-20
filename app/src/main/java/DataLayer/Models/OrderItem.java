@@ -15,10 +15,41 @@ public class OrderItem {
     @ColumnInfo(name = "orderId")
     private int orderId;
 
-    @ColumnInfo(name = "itemId")
-    private int itemId;
+    @ColumnInfo(name = "menuItemId")
+    private int menuItemId;
 
     @ColumnInfo(name = "quantity")
     private int quantity;
 
+    public int getOrderItemId() {
+        return orderItemId;
+    }
+
+    public void setOrderItemId(int orderItemId) {
+        this.orderItemId = orderItemId;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getMenuItemId() {
+        return menuItemId;
+    }
+
+    public void setMenuItemId(int menuItemId) {
+        this.menuItemId = menuItemId;
+    }
 }

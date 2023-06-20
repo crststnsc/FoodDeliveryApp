@@ -11,6 +11,7 @@ import java.util.List;
 public class MenuItem {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "menuItemId")
     private int menuItemId;
 
     @ColumnInfo(name = "restaurantId")
@@ -28,4 +29,51 @@ public class MenuItem {
     @ColumnInfo(name = "imageUrl")
     private String imageUrl;
 
+    public int getMenuItemId() {
+        return menuItemId;
+    }
+
+    public void setMenuItemId(int menuItemId) {
+        this.menuItemId = menuItemId;
+    }
+
+    public int getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }
