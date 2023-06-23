@@ -26,8 +26,8 @@ public class MenuItem {
     @ColumnInfo(name = "price")
     private double price;
 
-    @ColumnInfo(name = "imageUrl")
-    private String imageUrl;
+    @ColumnInfo(name = "resourceCode")
+    private int resourceCode;
 
     public int getMenuItemId() {
         return menuItemId;
@@ -69,11 +69,12 @@ public class MenuItem {
         this.price = price;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+
+    public int getResourceCode() {
+        return resourceCode;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setResourceCode(int resourceCode) {
+        this.resourceCode = resourceCode;
     }
 }
