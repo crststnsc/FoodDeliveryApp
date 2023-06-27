@@ -1,27 +1,30 @@
 package UILayer.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
-import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
+
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.ImageView;
+
 
 import com.example.fooddelivery.R;
+import com.example.fooddelivery.databinding.ActivityMainBinding;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import UILayer.ViewModels.UsersVM;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        UsersVM usersVM = new UsersVM();
+
+        binding.setUserVM(usersVM);
     }
 }

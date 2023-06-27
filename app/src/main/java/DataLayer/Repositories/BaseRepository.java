@@ -3,6 +3,7 @@ package DataLayer.Repositories;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.Query;
 
 import java.lang.reflect.ParameterizedType;
 
@@ -14,11 +15,4 @@ public interface BaseRepository<T>{
 
     @Delete
     void delete(T item);
-
-    @SuppressWarnings("unchecked")
-    default Class<T> getEntityClass() {
-        return (Class<T>) ((ParameterizedType) getClass()
-                .getGenericInterfaces()[0])
-                .getActualTypeArguments()[0];
-    }
 }

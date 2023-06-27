@@ -17,4 +17,12 @@ public abstract class AppDatabase extends androidx.room.RoomDatabase{
     public abstract OrderRepository orderRepository();
     public abstract MenuItemRepository menuItemRepository();
     public abstract UserRepository userRepository();
+
+    public void clearAllTables(){
+        restaurantRepository().deleteAll();
+        orderItemRepository().deleteAll();
+        orderRepository().deleteAll();
+        menuItemRepository().deleteAll();
+        userRepository().deleteAll();
+    }
 }

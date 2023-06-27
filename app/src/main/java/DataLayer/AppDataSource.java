@@ -7,7 +7,6 @@ import android.util.Log;
 import androidx.room.Room;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,7 +18,6 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 
 import DataLayer.Models.MenuItem;
 import DataLayer.Models.Order;
@@ -29,13 +27,14 @@ import DataLayer.Models.User;
 import DataLayer.Repositories.BaseRepository;
 
 public class AppDataSource extends Application {
-    private AppDatabase database;
+
+    public static AppDatabase database;
     private Thread networkThread;
 
     @Override
     public void onCreate(){
         super.onCreate();
-        database = Room.databaseBuilder(this, AppDatabase.class, "FoodDeliveryAppDatabase").build();
+        database = Room.databaseBuilder(this, AppDatabase.class, "FoodDeliveryAppDatabase").allowMainThreadQueries().build();
         networkThread = new Thread(this::fetchDataFromServer);
         networkThread.start();
     }
@@ -73,45 +72,40 @@ public class AppDataSource extends Application {
     }
 
     private void processServerResponse(String responseData){
-        // Implement your logic to process the server response data
-        Log.e("INFO","Server Response: " + responseData);
-        // Parse the JSON data, update your local database, etc.
         try{
             JSONObject jsonObject = new JSONObject(responseData);
 
             JSONArray users = jsonObject.getJSONArray("users");
-            fillTable(users, database.userRepository(), User.class);
+            fillTable(users, database.userRepository(), User[].class);
 
             JSONArray restaurants = jsonObject.getJSONArray("restaurants");
-            fillTable(restaurants, database.restaurantRepository(), Restaurant.class);
+            fillTable(restaurants, database.restaurantRepository(), Restaurant[].class);
 
             JSONArray menuItems = jsonObject.getJSONArray("menuItems");
-            fillTable(menuItems, database.menuItemRepository(), MenuItem.class);
+            fillTable(menuItems, database.menuItemRepository(), MenuItem[].class);
 
             JSONArray orders = jsonObject.getJSONArray("orders");
-            fillTable(orders, database.orderRepository(), Order.class);
+            fillTable(orders, database.orderRepository(), Order[].class);
 
             JSONArray orderItems = jsonObject.getJSONArray("orderItems");
-            fillTable(orderItems, database.orderItemRepository(), OrderItem.class);
+            fillTable(orderItems, database.orderItemRepository(), OrderItem[].class);
         }
         catch (JSONException e){
             e.printStackTrace();
         }
-
     }
 
-    @SuppressWarnings("unchecked")
     private <T> void fillTable(JSONArray data, BaseRepository<T> repository, Type listType) {
         Gson gson = new Gson();
 
-        List<T> itemList = gson.fromJson(data.toString(), listType);
-        repository.insertAll(itemList.toArray((T[]) new Object[0]));
+        T[] itemList = gson.fromJson(data.toString(), listType);
+        repository.insertAll(itemList);
     }
-
 
     @Override
     public void onTerminate(){
         super.onTerminate();
         networkThread.interrupt();
+        database.clearAllTables();
     }
 }

@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:name="DataLayer.AppDataSource"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,7 +13,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDelivery"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name="UILayer.Views.Home"
+            android:exported="false" />
         <activity
             android:name="UILayer.Views.MainActivity"
             android:exported="true">

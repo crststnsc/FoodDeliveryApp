@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context="UILayer.Views.MainActivity">
+
+    <data>
+        <variable
+            name="userVM"
+            type="UILayer.ViewModels.UsersVM" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <EditText
+            android:id="@+id/username"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="200dp"
             android:layout_marginHorizontal="70dp"
-            />
+            android:text="@={userVM.username}"
+            android:hint="@string/username"
+           />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="70dp"
+            android:text="@={userVM.password}"
+            android:hint="@string/password"/>
         <Button
             android:id="@+id/loginButton"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:layout_width="wrap_content"
+            android:text="@string/login"
             android:layout_marginTop="20dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:onClick="@{() -> userVM.loginUser()}"
+            />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

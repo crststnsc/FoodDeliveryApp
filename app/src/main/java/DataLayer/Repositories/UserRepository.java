@@ -16,4 +16,6 @@ public interface UserRepository extends BaseRepository<User>{
     @Query("SELECT * FROM User WHERE userId = :userId")
     User getUserById(int userId);
 
+    @Query("DELETE FROM User")
+    void deleteAll();
 }

@@ -52,4 +52,5 @@ public class OrderItem {
     public void setMenuItemId(int menuItemId) {
         this.menuItemId = menuItemId;
     }
+
 }
