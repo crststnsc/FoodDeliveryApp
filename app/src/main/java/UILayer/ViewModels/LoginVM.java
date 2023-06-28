@@ -2,17 +2,27 @@ package UILayer.ViewModels;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import java.util.List;
 
 import DataLayer.AppDataSource;
 import DataLayer.Models.User;
+import UILayer.Views.Home;
 
-public class UsersVM {
+public class LoginVM extends ViewModel {
     private List<User> users;
     public String username;
     public String password;
 
-    public UsersVM() {
+    private MutableLiveData<Action> action = new MutableLiveData<>();
+
+    public LiveData<Action> getAction(){
+        return action;
+    }
+
+    public LoginVM() {
         users = AppDataSource.database.userRepository().getAllUsers();
     }
 
@@ -21,13 +31,19 @@ public class UsersVM {
             Log.e("LOGIN","NULL username or password");
             return;
         }
-
         if(!validateUser(username, password)){
-            Log.e("LOGIN","User login failed");
+            showInvalidLogin();
             return;
         }
+        showHome();
+    }
 
-        Log.e("LOGIN","User login successful");
+    private void showHome(){
+        action.setValue(new Action(Action.SHOW_HOME));
+    }
+
+    private void showInvalidLogin(){
+        action.setValue(new Action(Action.SHOW_INVALID_LOGIN));
     }
 
     public boolean validateUser(String username, String password){
@@ -55,5 +71,19 @@ public class UsersVM {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public class Action{
+        public static final int SHOW_HOME = 0;
+        public static final int SHOW_INVALID_LOGIN = 1;
+        private final int action;
+
+        public Action(int action){
+            this.action = action;
+        }
+
+        public int getValue(){
+            return action;
+        }
     }
 }

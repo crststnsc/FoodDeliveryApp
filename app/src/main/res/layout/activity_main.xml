@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="userVM"
-            type="UILayer.ViewModels.UsersVM" />
+            name="loginVM"
+            type="UILayer.ViewModels.LoginVM" />
     </data>
 
     <LinearLayout
@@ -20,7 +20,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="200dp"
             android:layout_marginHorizontal="70dp"
-            android:text="@={userVM.username}"
+            android:text="@={loginVM.username}"
             android:hint="@string/username"
            />
         <EditText
@@ -29,7 +29,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="70dp"
-            android:text="@={userVM.password}"
+            android:text="@={loginVM.password}"
             android:hint="@string/password"/>
         <Button
             android:id="@+id/loginButton"
@@ -38,7 +38,7 @@
             android:text="@string/login"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:onClick="@{() -> userVM.loginUser()}"
+            android:onClick="@{() -> loginVM.loginUser()}"
             />
     </LinearLayout>
 

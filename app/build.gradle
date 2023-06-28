@@ -6,8 +6,8 @@ android {
     namespace 'com.example.fooddelivery'
     compileSdk 33
 
-    dataBinding{
-        enabled = true
+    buildFeatures {
+        dataBinding true
     }
 
     defaultConfig {
@@ -63,4 +63,14 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.10.1'
 
+    def nav_version = "2.6.0"
+
+    // Java language implementation
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+}
+
+configurations.implementation {
+    exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
 }

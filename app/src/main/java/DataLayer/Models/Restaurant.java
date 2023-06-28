@@ -19,8 +19,16 @@ public class Restaurant {
     @ColumnInfo(name = "phoneNumber")
     private String phoneNumber;
 
-    @ColumnInfo(name = "imageUrl")
-    private String imageUrl;
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    @ColumnInfo(name = "imageName")
+    private String imageName;
 
     public int getRestaurantId() {
         return restaurantId;
@@ -54,11 +62,4 @@ public class Restaurant {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 }

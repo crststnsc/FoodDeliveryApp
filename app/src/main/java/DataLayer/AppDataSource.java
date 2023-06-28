@@ -104,8 +104,10 @@ public class AppDataSource extends Application {
 
     @Override
     public void onTerminate(){
-        super.onTerminate();
-        networkThread.interrupt();
+        Log.e("TERMINATE", "TERMINATE");
         database.clearAllTables();
+        networkThread.interrupt();
+        super.onTerminate();
     }
+
 }
