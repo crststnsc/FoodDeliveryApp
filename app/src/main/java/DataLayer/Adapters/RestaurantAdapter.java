@@ -1,7 +1,6 @@
 package DataLayer.Adapters;
 
-import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddelivery.BuildConfig;
 import com.example.fooddelivery.R;
 
 import java.util.List;
@@ -23,6 +21,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     final private List<Restaurant> restaurants;
 
+    public void setClickListener(ItemClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
+
+    public ItemClickListener clickListener;
     public RestaurantAdapter(List<Restaurant> restaurants){
         this.restaurants = restaurants;
     }
@@ -41,7 +44,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
         String imageName = restaurant.getImageName();
 
-        Log.e("RESOURCE ID", imageName + " " + holder.imageView.getContext().getPackageName());
         int resourceId = holder.imageView.getContext().getResources().getIdentifier(imageName, "drawable", holder.imageView.getContext().getPackageName());
 
         holder.imageView.setImageResource(resourceId);
@@ -52,7 +54,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         return restaurants.size();
     }
 
-    public class RestaurantViewHolder extends RecyclerView.ViewHolder {
+    public class RestaurantViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView nameTextView;
         ImageView imageView;
@@ -61,6 +63,16 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             super(itemView);
             nameTextView = itemView.findViewById(R.id.restaurantName);
             imageView = itemView.findViewById(R.id.restaurantImage);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.e("RestaurantAdapter", "onClick");
+
+            if (clickListener != null)
+                clickListener.onClick(v, getAdapterPosition());
         }
     }
 }

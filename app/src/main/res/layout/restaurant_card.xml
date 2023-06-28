@@ -20,8 +20,6 @@
             android:scaleType="fitXY"
             android:src="@drawable/kfc_banner"/>
 
-
-
         <TextView
             android:id="@+id/restaurantName"
             android:layout_width="match_parent"

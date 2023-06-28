@@ -14,10 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDelivery"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        android:enableOnBackInvokedCallback="true"
+        tools:targetApi="33">
         <activity
             android:name="UILayer.Views.Home"
             android:exported="false" />
+        <activity android:name="UILayer.Views.Register"
+            android:exported="false"/>
+        <activity android:name="UILayer.Views.Menu"
+            android:exported="false"/>
         <activity
             android:name="UILayer.Views.MainActivity"
             android:exported="true">

@@ -12,21 +12,18 @@ import DataLayer.Models.Restaurant;
 
 
 public class RestaurantsVM {
-    private List<Restaurant> restaurants;
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
+    }
 
+    private List<Restaurant> restaurants;
     public RestaurantAdapter getRestaurantAdapter() {
         return restaurantAdapter;
     }
-
     private RestaurantAdapter restaurantAdapter;
 
     public RestaurantsVM(){
         restaurants = AppDataSource.database.restaurantRepository().getAllRestaurants();
         restaurantAdapter = new RestaurantAdapter(restaurants);
     }
-
-    public void onRestaurantClick(View view){
-        Log.d("RestaurantsVM", "onRestaurantClick: " + view.getId());
-    }
-
 }

@@ -35,8 +35,8 @@ public class AppDataSource extends Application {
     public void onCreate(){
         super.onCreate();
         database = Room.databaseBuilder(this, AppDatabase.class, "FoodDeliveryAppDatabase").allowMainThreadQueries().build();
-        networkThread = new Thread(this::fetchDataFromServer);
-        networkThread.start();
+        //networkThread = new Thread(this::fetchDataFromServer);
+        //networkThread.start();
     }
 
     private void fetchDataFromServer(){

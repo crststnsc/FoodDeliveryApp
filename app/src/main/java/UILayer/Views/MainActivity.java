@@ -8,11 +8,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Toast;
 
 
 import com.example.fooddelivery.R;
 import com.example.fooddelivery.databinding.ActivityMainBinding;
 
+import UILayer.ViewModels.Action;
 import UILayer.ViewModels.LoginVM;
 
 
@@ -33,14 +36,18 @@ public class MainActivity extends AppCompatActivity {
         binding.setLoginVM(mLoginVM);
     }
 
-    private void handleAction(LoginVM.Action action){
-        switch (action.getValue()){
-            case LoginVM.Action.SHOW_HOME:
+    private void handleAction(Action action) {
+        switch (action.getValue()) {
+            case Action.SHOW_HOME:
                 Intent intent = new Intent(this, Home.class);
                 startActivity(intent);
                 break;
-            case LoginVM.Action.SHOW_INVALID_LOGIN:
-                setContentView(R.layout.activity_main);
+            case Action.SHOW_INVALID_LOGIN:
+                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                break;
+            case Action.SHOW_REGISTER:
+                intent = new Intent(this, Register.class);
+                startActivity(intent);
                 break;
         }
     }

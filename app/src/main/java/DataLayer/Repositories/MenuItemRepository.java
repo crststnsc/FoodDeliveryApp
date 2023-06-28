@@ -1,8 +1,9 @@
 package DataLayer.Repositories;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Query;
+
+import java.util.List;
 
 import DataLayer.Models.MenuItem;
 
@@ -10,4 +11,7 @@ import DataLayer.Models.MenuItem;
 public interface MenuItemRepository extends BaseRepository<MenuItem>{
     @Query("DELETE FROM MenuItem")
     void deleteAll();
+
+    @Query("SELECT * FROM MenuItem WHERE restaurantId = :restaurantId")
+    List<MenuItem> getMenuItemsByRestaurantId(int restaurantId);
 }

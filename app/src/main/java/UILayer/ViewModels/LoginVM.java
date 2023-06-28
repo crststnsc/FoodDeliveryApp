@@ -15,7 +15,6 @@ public class LoginVM extends ViewModel {
     private List<User> users;
     public String username;
     public String password;
-
     private MutableLiveData<Action> action = new MutableLiveData<>();
 
     public LiveData<Action> getAction(){
@@ -31,6 +30,9 @@ public class LoginVM extends ViewModel {
             Log.e("LOGIN","NULL username or password");
             return;
         }
+
+        users = AppDataSource.database.userRepository().getAllUsers();
+
         if(!validateUser(username, password)){
             showInvalidLogin();
             return;
@@ -46,10 +48,12 @@ public class LoginVM extends ViewModel {
         action.setValue(new Action(Action.SHOW_INVALID_LOGIN));
     }
 
+    public void goToRegister(){
+        action.setValue(new Action(Action.SHOW_REGISTER));
+    }
+
     public boolean validateUser(String username, String password){
         for (User user : users){
-            Log.e("USER", user.getUsername());
-            Log.e("PASSWORD", user.getPassword());
             if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                 return true;
             }
@@ -73,17 +77,5 @@ public class LoginVM extends ViewModel {
         this.password = password;
     }
 
-    public class Action{
-        public static final int SHOW_HOME = 0;
-        public static final int SHOW_INVALID_LOGIN = 1;
-        private final int action;
 
-        public Action(int action){
-            this.action = action;
-        }
-
-        public int getValue(){
-            return action;
-        }
-    }
 }
