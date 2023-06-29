@@ -40,19 +40,25 @@
                 android:layout_marginVertical="10dp"
                 android:drawableEnd="@drawable/baseline_directions_car_24" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="View Cart" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/menuRecyclerView"
-                android:layout_marginVertical="100dp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="70dp"/>
 
         </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Cart"
+            android:background="@drawable/button_selector"
+            android:textColor="@drawable/text_selector"
+            android:layout_gravity="bottom"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="50dp"/>
 
         <androidx.fragment.app.FragmentContainerView
             android:layout_width="match_parent"

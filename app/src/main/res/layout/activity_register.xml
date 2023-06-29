@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@drawable/register_gradient">
 
     <data>
         <variable
@@ -19,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:text="@string/registerBold"
+            android:text="@string/create_account"
             android:fontFamily="sans-serif-black"
             android:textColor="@color/black"
             android:textSize="40sp" />
@@ -82,10 +81,12 @@
             android:layout_marginHorizontal="70dp"
             android:layout_marginTop="20dp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:text="@string/register"
+            android:background="@drawable/button_selector"
+            android:textColor="@drawable/text_selector"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:onClick="@{() -> registerVM.registerUser()}"/>
