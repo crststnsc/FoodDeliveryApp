@@ -42,6 +42,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         Restaurant restaurant = restaurants.get(position);
         holder.nameTextView.setText(restaurant.getName());
 
+        String deliveryTime = restaurant.getDeliveryTime() + " min";
+        holder.deliveryTimeTextView.setText(deliveryTime);
+
         String imageName = restaurant.getImageName();
 
         int resourceId = holder.imageView.getContext().getResources().getIdentifier(imageName, "drawable", holder.imageView.getContext().getPackageName());
@@ -57,12 +60,14 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     public class RestaurantViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView nameTextView;
+        TextView deliveryTimeTextView;
         ImageView imageView;
 
         public RestaurantViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.restaurantName);
             imageView = itemView.findViewById(R.id.restaurantImage);
+            deliveryTimeTextView = itemView.findViewById(R.id.deliveryTime);
 
             itemView.setOnClickListener(this);
         }

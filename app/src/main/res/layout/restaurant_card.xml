@@ -20,18 +20,39 @@
             android:scaleType="fitXY"
             android:src="@drawable/kfc_banner"/>
 
-        <TextView
-            android:id="@+id/restaurantName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="KFC"
-            android:fontFamily="sans-serif-black"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="10dp"
-            android:drawableEnd="@drawable/baseline_directions_car_24"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/restaurantName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KFC"
+                android:fontFamily="sans-serif-black"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp" />
+
+            <TextView
+                android:id="@+id/deliveryTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="11-12min"
+                android:fontFamily="sans-serif-black"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginVertical="10dp"
+                android:gravity="end"
+                android:layout_marginEnd="10dp"
+                android:drawableEnd="@drawable/baseline_directions_car_24"/>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

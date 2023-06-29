@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddelivery.R;
 
+import org.w3c.dom.Text;
+
 import UILayer.ViewModels.MenuVM;
 
 public class Menu extends AppCompatActivity {
@@ -44,6 +46,11 @@ public class Menu extends AppCompatActivity {
 
         TextView restaurantName = findViewById(R.id.restaurant_menu_name);
         restaurantName.setText(menuVM.restaurant.getName());
+
+        TextView restaurantDeliveryTime = findViewById(R.id.restaurant_menu_delivery_time);
+
+        String deliveryTime = menuVM.restaurant.getDeliveryTime() + " min";
+        restaurantDeliveryTime.setText(deliveryTime);
 
         Button viewCartButton = findViewById(R.id.button);
 

@@ -19,6 +19,17 @@ public class Restaurant {
     @ColumnInfo(name = "phoneNumber")
     private String phoneNumber;
 
+    public String getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
+    @ColumnInfo(name ="deliveryTime")
+    private String deliveryTime;
+
     public String getImageName() {
         return imageName;
     }
