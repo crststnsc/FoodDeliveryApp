@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import java.util.List;
 
 import DataLayer.AppDataSource;
+import DataLayer.Models.StaticUser;
 import DataLayer.Models.User;
 import UILayer.Views.Home;
 
@@ -55,6 +56,7 @@ public class LoginVM extends ViewModel {
     public boolean validateUser(String username, String password){
         for (User user : users){
             if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                StaticUser.user = user;
                 return true;
             }
         }

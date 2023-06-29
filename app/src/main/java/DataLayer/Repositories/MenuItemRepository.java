@@ -14,4 +14,7 @@ public interface MenuItemRepository extends BaseRepository<MenuItem>{
 
     @Query("SELECT * FROM MenuItem WHERE restaurantId = :restaurantId")
     List<MenuItem> getMenuItemsByRestaurantId(int restaurantId);
+
+    @Query("SELECT * FROM MenuItem WHERE menuItemId = :menuItemId")
+    MenuItem getMenuItemById(int menuItemId);
 }

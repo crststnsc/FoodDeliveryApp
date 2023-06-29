@@ -8,7 +8,8 @@ import androidx.room.PrimaryKey;
 
 import java.sql.Date;
 
-@Entity(foreignKeys = {@ForeignKey(entity = User.class, parentColumns = "userId", childColumns = "userId", onDelete = ForeignKey.CASCADE),
+@Entity(foreignKeys = {
+        @ForeignKey(entity = User.class, parentColumns = "userId", childColumns = "userId", onDelete = ForeignKey.CASCADE),
         @ForeignKey(entity = Restaurant.class, parentColumns = "restaurantId", childColumns = "restaurantId", onDelete = ForeignKey.CASCADE)})
 public class Order {
 

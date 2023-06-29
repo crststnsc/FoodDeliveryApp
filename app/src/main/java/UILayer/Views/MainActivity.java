@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -34,11 +35,24 @@ public class MainActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setLoginVM(mLoginVM);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+        if (sharedPreferences.contains("username") && sharedPreferences.contains("password")) {
+            String username = sharedPreferences.getString("username", "");
+            String password = sharedPreferences.getString("password", "");
+            mLoginVM.setUsername(username);
+            mLoginVM.setPassword(password);
+            mLoginVM.loginUser();
+        }
     }
 
     private void handleAction(Action action) {
         switch (action.getValue()) {
             case Action.SHOW_HOME:
+                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+
+                saveToSharedPreferences(mLoginVM.getUsername(), mLoginVM.getPassword());
+
                 Intent intent = new Intent(this, Home.class);
                 startActivity(intent);
                 break;
@@ -50,5 +64,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
         }
+    }
+
+    private void saveToSharedPreferences(String username, String password) {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("username", username);
+        editor.putString("password", password);
+        editor.apply();
     }
 }

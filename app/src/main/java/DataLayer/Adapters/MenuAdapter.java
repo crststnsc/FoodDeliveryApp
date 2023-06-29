@@ -3,6 +3,7 @@ package DataLayer.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,11 @@ import DataLayer.Models.MenuItem;
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuItemViewHolder>{
     final private List<MenuItem> menuItems;
 
+    public void setOnItemAddListener(OnItemAddListener onItemAddListener) {
+        this.onItemAddListener = onItemAddListener;
+    }
+
+    private OnItemAddListener onItemAddListener;
     public MenuAdapter(List<MenuItem> menuItems){
         this.menuItems = menuItems;
     }
@@ -53,12 +59,17 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuItemViewHo
         return menuItems.size();
     }
 
+    public interface OnItemAddListener{
+        void onItemAdd(int position);
+    }
+
     public class MenuItemViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
         TextView nameTextView;
         TextView priceTextView;
         TextView descriptionTextView;
+        ImageButton addToCartButton;
 
         public MenuItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +78,16 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuItemViewHo
             nameTextView = itemView.findViewById(R.id.itemName);
             priceTextView = itemView.findViewById(R.id.itemPrice);
             descriptionTextView = itemView.findViewById(R.id.itemDescription);
+
+            addToCartButton = itemView.findViewById(R.id.addItemButton);
+            addToCartButton.setOnClickListener(v -> {
+                if(onItemAddListener != null) {
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION) {
+                        onItemAddListener.onItemAdd(position);
+                    }
+                }
+            });
         }
     }
 }

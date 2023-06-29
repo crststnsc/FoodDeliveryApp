@@ -2,21 +2,17 @@ package UILayer.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddelivery.R;
-import com.example.fooddelivery.databinding.ActivityMenuBinding;
 
-import java.util.List;
-
-import DataLayer.AppDataSource;
-import DataLayer.Models.MenuItem;
 import UILayer.ViewModels.MenuVM;
 
 public class Menu extends AppCompatActivity {
@@ -48,6 +44,9 @@ public class Menu extends AppCompatActivity {
 
         TextView restaurantName = findViewById(R.id.restaurant_menu_name);
         restaurantName.setText(menuVM.restaurant.getName());
-    }
 
+        Button viewCartButton = findViewById(R.id.button);
+
+        viewCartButton.setOnClickListener(v -> getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, new Cart()).addToBackStack("cart").commit());
+    }
 }

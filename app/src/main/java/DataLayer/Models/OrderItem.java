@@ -19,7 +19,7 @@ public class OrderItem {
     private int menuItemId;
 
     @ColumnInfo(name = "quantity")
-    private int quantity;
+    private int quantity = 0;
 
     public int getOrderItemId() {
         return orderItemId;
